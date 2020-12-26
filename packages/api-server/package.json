@@ -1,0 +1,13 @@
+{
+  "name": "api-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "json-server": "^0.16.3"
+  },
+  "scripts": {
+    "dev": "json-server --watch db.json --no-cors"
+  }
+}
