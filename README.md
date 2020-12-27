@@ -37,3 +37,15 @@ yarn workspace contact-app add formik
 #uses recoil
 
 yarn workspace contact-app add recoil
+
+# for styling we will be using styled-components which has lot of advantages as mentioned here https://www.smashingmagazine.com/2017/01/styled-components-enforcing-best-practices-component-based-systems/
+
+yarn workspace contact-app add styled-components
+
+# also install the babel plugin ( to the root package.json ? )
+
+# npm install --save-dev babel-plugin-styled-components
+
+yarn add babel-plugin-styled-components --dev -W
+
+# need to override the babel config that comes as part of CRA
