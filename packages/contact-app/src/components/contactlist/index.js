@@ -1,16 +1,27 @@
 import { Fragment } from "react";
 import { useRecoilValue } from "recoil";
+import styled from "styled-components";
+
 import { contactList } from "../../recoil/atoms";
 
 import SearchBar from "../searchbar";
 import ContactList from "./ContactList";
 
+const ContactApp = styled.div`
+  width: 300px;
+
+  & > * {
+    width: 100%;
+  }
+`;
+
 export default () => {
   const contacts = useRecoilValue(contactList);
+
   return (
-    <Fragment>
+    <ContactApp>
       <SearchBar />
       <ContactList contacts={contacts} />
-    </Fragment>
+    </ContactApp>
   );
 };

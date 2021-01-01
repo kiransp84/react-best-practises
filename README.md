@@ -5,7 +5,7 @@ yarn workspace api-server dev
 # react-best-practises
 
 implement react best practises into a legacy react application
-
+( Local = D:\Kirans\Tutorials\REACT\iCargo REACT Training Resources\examples\contactappreduxform )
 contact app
 
 old version of react ( version 15.3 )
@@ -49,3 +49,9 @@ yarn workspace contact-app add styled-components
 yarn add babel-plugin-styled-components --dev -W
 
 # need to override the babel config that comes as part of CRA
+
+# for this we have to use a npm package called customize-cra
+
+yarn add customize-cra react-app-rewired --dev -W
+
+// To-Do define a global style rule using css
