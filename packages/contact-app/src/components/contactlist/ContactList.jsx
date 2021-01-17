@@ -1,51 +1,52 @@
+import {useRef} from "react";
+import { VariableSizeList } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 import styled from "styled-components";
 
-const Ul = styled.ul`
-  padding: 0;
+import Contact from "./Contact.jsx";
+
+const Container = styled.div`
+  width:300px;
+  height:100%;
+  border:1px solid;
 `;
 
-const Li = styled.li`
-  list-style: none;
-  margin: 5px;
-  background-color: #e6eeff;
-`;
-
-//color red for every even contact item
-const LiColors = styled(Li).attrs((/* props */) => ({ tabIndex: 0 }))`
-  &:nth-child(2) {
-    background: #ccd8ff;
-  }
-`;
-
-const Img = styled.img`
-  border-radius: 50%;
-  margin-right: 10px;
-  float: left;
-  width: 60px;
-`;
-
-const ContactData = styled.div`
-  padding-top: 5px;
-  height: 60px;
-`;
-
+// To-Do show a loading indicator
 export default ({ contacts = [] }) => {
-  // To-Do show a loading indicator
 
+  let rowHeights = {};
+  // ref of the list to call its instance method  
+  let listRef = useRef({});
+  const getRowHeight= (index) => {
+    return rowHeights[index] || 45 ;
+  }
+  const setRowHeight= (index,height) => {
+    listRef.current.resetAfterIndex(0);
+    rowHeights = { ...rowHeights , [index] : height }
+    console.log(`Index ${index} Height ${height}`);
+  }
   return (
-    <div>
-      <Ul>
-        {contacts.map(contact => (
-          <LiColors key={contact.email}>
-            <Img src={contact.thumbnail} role="presentation" />
-            <ContactData>
-              <strong>{contact.name}</strong>
-              <br />
-              <small>{contact.email}</small>
-            </ContactData>
-          </LiColors>
-        ))}
-      </Ul>
-    </div>
+    <Container>
+    <AutoSizer>
+      { ({ height, width })=>(
+            <VariableSizeList 
+              itemData={contacts}
+              height={height}
+              itemCount={contacts.length}  
+              width={width}
+              //estimatedItemSize={45}
+              itemSize={getRowHeight}
+              ref={listRef}
+            >
+              {
+                ({index,style,data})=>{
+                  return <Contact index={index} style={style} data={data} setRowHeight={setRowHeight} />
+                }
+              }
+            </VariableSizeList>)
+      }
+    </AutoSizer>
+    </Container>    
   );
-};
+}
+

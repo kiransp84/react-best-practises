@@ -54,4 +54,19 @@ yarn add babel-plugin-styled-components --dev -W
 
 yarn add customize-cra react-app-rewired --dev -W
 
-// To-Do define a global style rule using css
+# use react-window component to render large lists of data
+
+yarn workspace contact-app add react-window
+
+# use (standalone) auto sizer from react-virtualised to make the list responsive
+
+npm install --save react-virtualized-auto-sizer
+yarn workspace contact-app add react-virtualized-auto-sizer
+
+Setup
+
+1. Run "yarn workspace api-server dev" to make the API response endpoint up and running
+
+2. To change the webpack-dev-server port change in .env file in the root of the app
+
+3. Run "yarn workspace contact-app start" to start the webpack-dev-server hosting the frontend

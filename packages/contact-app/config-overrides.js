@@ -1,10 +1,6 @@
 const {
   override,
-  addDecoratorsLegacy,
-  disableEsLint,
-  addBundleVisualizer,
-  addWebpackAlias,
-  adjustWorkbox,
+  overrideDevServer,  
   addBabelPlugin
 } = require("customize-cra");
 
@@ -15,4 +11,12 @@ const {
 };*/
 
 // Adding to the plugin array...it gets called first
-module.exports = override(addBabelPlugin("babel-plugin-styled-components"));
+//module.exports = override(addBabelPlugin("babel-plugin-styled-components"));
+
+module.exports = {
+  webpack: override(addBabelPlugin("babel-plugin-styled-components")),
+  devServer: overrideDevServer(
+
+    )
+};
+

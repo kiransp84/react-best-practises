@@ -8,7 +8,8 @@ import SearchBar from "../searchbar";
 import ContactList from "./ContactList";
 
 const ContactApp = styled.div`
-  width: 300px;
+  width:  300px;
+  height: 600px;
 
   & > * {
     width: 100%;
