@@ -14,16 +14,20 @@ const Container = styled.div`
 // To-Do show a loading indicator
 export default ({ contacts = [] }) => {
 
-  let rowHeights = {};
+  //let rowHeights = {};
+  const rowHeights = useRef({});
+
   // ref of the list to call its instance method  
   let listRef = useRef({});
   const getRowHeight= (index) => {
-    return rowHeights[index] || 45 ;
+    const rowHeight = rowHeights.current[index] + 5 || 45 ;
+    //console.log(`Getting Index ${index} Height  ${rowHeight}`);
+    return rowHeight;
   }
   const setRowHeight= (index,height) => {
     listRef.current.resetAfterIndex(0);
-    rowHeights = { ...rowHeights , [index] : height }
-    console.log(`Index ${index} Height ${height}`);
+    rowHeights.current = { ...rowHeights.current , [index] : height }
+    //console.log(`Setting Index ${index} Height ${height}`);
   }
   return (
     <Container>
@@ -34,7 +38,6 @@ export default ({ contacts = [] }) => {
               height={height}
               itemCount={contacts.length}  
               width={width}
-              //estimatedItemSize={45}
               itemSize={getRowHeight}
               ref={listRef}
             >

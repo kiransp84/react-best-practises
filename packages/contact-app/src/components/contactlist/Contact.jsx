@@ -16,7 +16,6 @@ const Img = styled.img`
 const Container = styled.div`  
   margin: 5px;
   background-color: ${props=> props.index %2 === 0 ? '#e6eeff' : '#ccd8ff' }
-  
 `;
 
 
@@ -33,17 +32,20 @@ const Contact = ( { index, style, data , setRowHeight }  ) => {
     //console.log(' entire props ',props);
     //console.log('style passed as props ',style );
     //console.log('data passed as props ',data );
+    
     const contact = data[index];
-    const styleDup = {...style};
-    delete styleDup.height;
-    return (<Container index={index} style={styleDup} key={contact.email} ref={containerRef}>
-        <Img src={contact.thumbnail} role="presentation" />
-        <ContactData>
-          <strong>{contact.name}</strong>
-          <br />
-          <small>{contact.email}</small>
-        </ContactData>
-      </Container>)
+    return (
+      <div style={style}>
+        <Container index={index} key={contact.email} ref={containerRef}>
+          <Img src={contact.thumbnail} role="presentation" />
+          <ContactData>
+            <strong>{contact.name}</strong>
+            <br />
+            <small>{contact.email}</small>
+          </ContactData>
+        </Container>
+      </div>)
 }
 
+// pure functional component 
 export default memo(Contact);
